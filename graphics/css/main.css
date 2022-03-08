@@ -1,0 +1,104 @@
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 700;
+ src: url(NanumSquareB.woff2) format('woff2');
+}
+
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 700 4.7vw "NanumSquare", sans-serif;
+    color: #fff;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    background: rgba(33,37,41,.9);
+    overflow: hidden;
+    line-height: 1em;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical,
+.rotation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#border_color {
+    background: #ff6b6b;
+    width: 100%;
+    height: .3rem;
+}
+
+.box {
+    overflow: hidden;
+    padding: .5rem;
+}
+
+.horizontal {
+    overflow: hidden;
+    padding: .5rem .5rem .5rem .25rem;
+}
+
+.rotation {
+    padding: 1.5rem .5rem .5rem .5rem;
+}
+
+.highlight {
+    color: #ffd43b;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    margin-right: .25em;
+}
+
+.horizontal .icon {
+    margin: 0 .25em;
+}
+
+.msg {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.vertical {
+    padding: .25rem .5rem;
+}
+
+.vertical .msg {
+    padding: .25rem 0;
+}
+
+.disable {
+    display: none;
+}
+
+.rotation .l1,
+.rotation .l2,
+.rotation .l3,
+.rotation .l4 {
+    margin-top: -1em;
+    opacity: 0;
+}

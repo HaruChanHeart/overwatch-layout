@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="materialize.min.css">
+    <script src="materialize.min.js"></script>
+	<custom-style>
+		<style is="custom-style">
+			body {
+				color: #000;
+				background-color: #fff;
+			}
+            .pt-1 {
+                padding-top: .75rem !important;
+            }
+            [type="checkbox"].filled-in:checked+span:not(.lever):after {
+                border-color: #ef5350;
+                background-color: #ef5350;
+            }
+            [type="radio"]:checked+span:after {
+                background-color: #ef5350;
+            }
+            input[type=number]:not(.browser-default):focus:not([readonly]),
+            [type="radio"]:checked+span:after {
+                border-color: #ef5350;
+            }
+            input[type=number]:not(.browser-default):focus:not([readonly]) {
+                -webkit-box-shadow: 0 1px 0 0 #ef5350;
+                box-shadow: 0 1px 0 0 #ef5350;
+            }
+            input[type=number]:not(.browser-default):focus:not([readonly])+label {
+                color: #ef5350;
+            }
+            h5 {
+                margin: .5rem 0 1rem !important;
+            }
+		</style>
+	</custom-style>
+</head>
+<body>
+    <div class="row">
+        <div class="col s12 pt-1">경쟁전 점수를 방송 화면에 표시합니다</div>
+        <h5 class="col s12">경쟁전 점수 입력</h5>
+        <div class="input-field col s3">
+            <input id="srTankText" type="number" maxlength="4" max="5000" placeholder="5000">
+            <label for="srTankText">돌격군 점수</label>
+        </div>
+        <div class="input-field col s3">
+            <input id="srDamageText" type="number" maxlength="4" max="5000" placeholder="5000">
+            <label for="srDamageText">공격군 점수</label>
+        </div>
+        <div class="input-field col s3">
+            <input id="srSupportText" type="number" maxlength="4" max="5000" placeholder="5000">
+            <label for="srSupportText">지원군 점수</label>
+        </div>
+        <div class="input-field col s3">
+            <input id="srFlexText" type="number" maxlength="4" max="5000" placeholder="5000">
+            <label for="srFlexText">자유경쟁전 점수</label>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col s12">경쟁전 전적 입력</h5>
+        <div class="input-field col s4">
+            <input id="victoryText" type="number" maxlength="4" placeholder="0">
+            <label for="victoryText">승리 수</label>
+        </div>
+        <div class="input-field col s4">
+            <input id="defeatText" type="number" maxlength="4" placeholder="0">
+            <label for="defeatText">패배 수</label>
+        </div>
+        <div class="input-field col s4">
+            <input id="drawText" type="number" maxlength="4" placeholder="0">
+            <label for="drawText">무승부 수</label>
+        </div>
+    </div>
+    <div class="row">
+        <h5 class="col s12">오버레이 설정</h5>
+        <div class="col s4">
+            <label class="grey-text text-darken-4">
+                <input type="radio" id="modeRotation" name="mode" value="modeRotation" checked>
+                <span>로테이션 표시</span>
+            </label>
+        </div>
+        <div class="col s4">
+            <label class="grey-text text-darken-4">
+                <input type="radio" id="modeHorizontal" name="mode" value="modeHorizontal">
+                <span>가로 표시</span>
+            </label>
+        </div>
+        <div class="col s4">
+            <label class="grey-text text-darken-4">
+                <input type="radio" id="modeVertical" name="mode" value="modeVertical">
+                <span>세로 표시</span>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <label class="grey-text text-darken-4">
+                <input type="checkbox" id="visibleTank" name="visibleTank" class="filled-in" checked>
+                <span>돌격군 점수 표시</span>
+            </label>
+        </div>
+        <div class="col s6">
+            <label class="grey-text text-darken-4">
+                <input type="checkbox" id="visibleDamage" name="visibleDamage" class="filled-in" checked>
+                <span>공격군 점수 표시</span>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6">
+            <label class="grey-text text-darken-4">
+                <input type="checkbox" id="visibleSupport" name="visibleSupport" class="filled-in" checked>
+                <span>지원군 점수 표시</span>
+            </label>
+        </div>
+        <div class="col s6">
+            <label class="grey-text text-darken-4">
+                <input type="checkbox" id="visibleFlex" name="visibleFlex" class="filled-in" checked>
+                <span>자유 경쟁전 점수 표시</span>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+	        <button id="srSubmit" class="waves-effect waves-light btn-large red lighten-1">적용</button>
+        </div>
+    </div>
+    <script>
+		let srtanktext = document.getElementById('srTankText');
+		let srdamagetext = document.getElementById('srDamageText');
+		let srsupporttext = document.getElementById('srSupportText');
+		let srflextext = document.getElementById('srFlexText');
+        
+		let victorytext = document.getElementById('victoryText');
+		let defeattext = document.getElementById('defeatText');
+		let drawtext = document.getElementById('drawText');
+        
+        let visibleTank = document.getElementById('visibleTank');
+        let visibleDamage = document.getElementById('visibleDamage');
+        let visibleSupport = document.getElementById('visibleSupport');
+        let visibleFlex = document.getElementById('visibleFlex');
+        
+        const radioButtons = document.querySelectorAll('input[name="mode"]');
+        
+		const srsubmit = document.getElementById('srSubmit');
+        
+        // nodecg replicant
+		const srTankReplicant = nodecg.Replicant('skillrateTank');
+		const srDamageReplicant = nodecg.Replicant('skillrateDamage');
+		const srSupportReplicant = nodecg.Replicant('skillrateSupport');
+		const srFlexReplicant = nodecg.Replicant('skillrateFlex');
+        
+		const modeReplicant = nodecg.Replicant('mode');
+        
+		const visibleTankReplicant = nodecg.Replicant('visibleTank');
+		const visibleDamageReplicant = nodecg.Replicant('visibleDamage');
+		const visibleSupportReplicant = nodecg.Replicant('visibleSupport');
+		const visibleFlexReplicant = nodecg.Replicant('visibleFlex');
+        
+		const victoryReplicant = nodecg.Replicant('victory');
+		const defeatReplicant = nodecg.Replicant('defeat');
+		const drawReplicant = nodecg.Replicant('draw');
+
+		srTankReplicant.on('change', newVal => {
+			srtanktext.value = newVal;
+		});
+
+		srDamageReplicant.on('change', newVal => {
+			srdamagetext.value = newVal;
+		});
+
+		srSupportReplicant.on('change', newVal => {
+			srsupporttext.value = newVal;
+		});
+
+		srFlexReplicant.on('change', newVal => {
+			srflextext.value = newVal;
+		});
+
+		victoryReplicant.on('change', newVal => {
+			victorytext.value = newVal;
+		});
+
+		defeatReplicant.on('change', newVal => {
+			defeattext.value = newVal;
+		});
+
+		drawReplicant.on('change', newVal => {
+			drawtext.value = newVal;
+		});
+
+		visibleTankReplicant.on('change', newVal => {
+			visibleTank.checked = newVal;
+		});
+
+		visibleDamageReplicant.on('change', newVal => {
+			visibleDamage.checked = newVal;
+		});
+
+		visibleSupportReplicant.on('change', newVal => {
+			visibleSupport.checked = newVal;
+		});
+
+		visibleFlexReplicant.on('change', newVal => {
+			visibleFlex.checked = newVal;
+		});
+
+		modeReplicant.on('change', newVal => {
+			document.getElementById(newVal).checked = true;
+		});
+
+		srsubmit.addEventListener('click', () => {
+            let selectedMode;
+            
+            for (const radioButton of radioButtons) {
+                if (radioButton.checked) {
+                    selectedMode = radioButton.value;
+                    break;
+                }
+            }
+            
+            srTankReplicant.value = srtanktext.value;
+            srDamageReplicant.value = srdamagetext.value;
+            srSupportReplicant.value = srsupporttext.value;
+            srFlexReplicant.value = srflextext.value;
+            
+            victoryReplicant.value = victorytext.value;
+            defeatReplicant.value = defeattext.value;
+            drawReplicant.value = drawtext.value;
+            
+            visibleTankReplicant.value = visibleTank.checked;
+            visibleDamageReplicant.value = visibleDamage.checked;
+            visibleSupportReplicant.value = visibleSupport.checked;
+            visibleFlexReplicant.value = visibleFlex.checked;
+            
+            modeReplicant.value = selectedMode;
+        });
+	</script>
+
+	<script>
+		// You can access the NodeCG api anytime from the `window.nodecg` object
+		// Or just `nodecg` for short. Like this!:
+		nodecg.log.info('Here\'s an example of using NodeCG\'s logging API!');
+	</script>
+</body>
+</html>

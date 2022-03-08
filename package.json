@@ -1,0 +1,51 @@
+{
+  "name": "overwatch-layout",
+  "version": "1.0.0",
+  "description": "Overwatch skillrate overlay for NodeCG",
+  "homepage": "https://haruchanheart.com",
+  "author": {
+    "name": "Haru",
+    "email": "haruchan0111@naver.com",
+    "url": "https://haruchanheart.com"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "overwatch",
+    "skillrate",
+    "nodecg",
+    "overlay"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "overwatch",
+        "title": "오버워치 점수 패널",
+        "file": "overwatch.html",
+        "width": 4,
+        "headerColor": "#ef5350"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "overwatch.html",
+        "width": 1920,
+        "height": 1080,
+        "singleInstance": false
+      },
+      {
+        "file": "overwatch_ml7.html",
+        "width": 1920,
+        "height": 1080,
+        "singleInstance": false
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "MIT"
+}
