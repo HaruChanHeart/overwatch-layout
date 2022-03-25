@@ -1,0 +1,111 @@
+@font-face {
+ font-family: 'NanumSquare';
+ font-weight: 700;
+ src: url(NanumSquareB.woff2) format('woff2');
+}
+
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font: 700 4.7vw "NanumSquare", sans-serif;
+    color: #212529;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,255,255,.9);
+    overflow: hidden;
+    line-height: 1em;
+    border-radius: .5rem;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical,
+.rotation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.box {
+    overflow: hidden;
+    padding: .5rem;
+}
+
+.horizontal {
+    overflow: hidden;
+    padding: .5rem .5rem .5rem .25rem;
+}
+
+.rotation {
+    padding: 1.5rem .5rem .5rem .5rem;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    margin-right: .25em;
+}
+
+.horizontal .icon {
+    margin: 0 .25em;
+}
+
+.msg {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.vertical {
+    padding: .25rem .5rem;
+}
+
+.vertical .msg {
+    padding: .25rem 0;
+}
+
+.disable {
+    display: none;
+}
+
+.rotation .l1,
+.rotation .l2,
+.rotation .l3,
+.rotation .l4 {
+    margin-top: -1em;
+    opacity: 0;
+}
+
+#skillrateTank {
+    color: #ff8787;
+}
+
+#skillrateDamage {
+    color: #ff922b;
+}
+
+#skillrateSupport {
+    color: #20c997;
+}
+
+#skillrateFlex {
+    color: #5c7cfa;
+}
